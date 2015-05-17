@@ -7,7 +7,7 @@ type t = int * int * int
 type version_part = [
   | `Major (** First part of version *)
   | `Minor (** Second part of version *)
-  | `Patch (** Thrid part of version *)
+  | `Patch (** Third part of version *)
 ]
 
 (** Compare two versions *)
