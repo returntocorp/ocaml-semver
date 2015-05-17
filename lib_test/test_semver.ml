@@ -1,20 +1,20 @@
 open OUnit
 open Semver
 
-let test_parse_print = fun ver str () -> begin
-    assert_equal ver (of_string str);
-    assert_equal (to_string ver) str
-  end
+let test_parse_print ver str () =
+  assert_equal ver (of_string str);
+  assert_equal (to_string ver) str
 
-let eq = fun v1 v2 -> assert_equal (compare v1 v2)  0
-let gt = fun v1 v2 -> begin
-    assert_equal (compare v1 v2)  1;
-    assert_equal (compare v2 v1) (-1);
-  end 
+let eq v1 v2 = assert_equal (compare v1 v2)  0
+
+let gt v1 v2 =
+  assert_equal (compare v1 v2)  1;
+  assert_equal (compare v2 v1) (-1)
 
 let v = of_string
 
-let q input versions expected = assert_equal (query input (List.map v versions)) expected
+let q input versions expected =
+  assert_equal (query input (List.map v versions)) expected
 
 let suite = "Semver suite">::: [
   "3 parts">:: test_parse_print ((1, 1, 1)) "1.1.1";
