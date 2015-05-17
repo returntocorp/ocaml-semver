@@ -1,6 +1,6 @@
 # OASIS_START
-# DO NOT EDIT (digest: 9c9a25e0f76a1fb84fc41e5234233c5d)
-version = "0.0.1"
+# DO NOT EDIT (digest: 21a6222f40427da2489d46a1392460a7)
+version = "0.1.0"
 description = "Semantic Versioning (semver) library"
 archive(byte) = "semver.cma"
 archive(byte, plugin) = "semver.cma"
