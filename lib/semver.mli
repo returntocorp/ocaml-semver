@@ -1,11 +1,13 @@
-type semver = Semver of int * int * int
+type semver = int * int * int
+
 type query = QueryPatch of int * int * int
            | QueryMinor of int * int
            | QueryMajor of int
+
 type version_part = [
-  `Major
-| `Minor
-| `Patch
+  | `Major
+  | `Minor
+  | `Patch
 ]
 
 val compare_version : semver -> semver -> int
