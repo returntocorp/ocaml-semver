@@ -1,4 +1,4 @@
-type semver = int * int * int
+type t = int * int * int
 
 type query = QueryPatch of int * int * int
            | QueryMinor of int * int
@@ -10,17 +10,17 @@ type version_part = [
   | `Patch
 ]
 
-val compare_version : semver -> semver -> int
+val compare : t -> t -> int
 
-val increment_version : version_part -> semver -> semver
-val decrement_version : version_part -> semver -> semver
+val increment_version : version_part -> t -> t
+val decrement_version : version_part -> t -> t
 
-val parse_version : string -> semver
-val print_version : semver -> string
+val of_string : string -> t
+val to_string : t -> string
 
-val query_version : query -> semver list -> semver option
+val query_version : query -> t list -> t option
 
 val parse_query : string -> query
 val print_query : query -> string
 
-val query : string -> semver list -> semver option
+val query : string -> t list -> t option
