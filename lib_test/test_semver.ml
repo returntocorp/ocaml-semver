@@ -1,6 +1,13 @@
 open OUnit
 open Semver
 
+let of_string x =
+  match of_string x with
+  | None -> assert false
+  | Some x -> x
+
+let v = of_string
+
 let test_parse_print ver str () =
   assert_equal ver (of_string str);
   assert_equal (to_string ver) str
@@ -10,8 +17,6 @@ let eq v1 v2 = assert_equal (compare v1 v2)  0
 let gt v1 v2 =
   assert_equal (compare v1 v2)  1;
   assert_equal (compare v2 v1) (-1)
-
-let v = of_string
 
 let q input versions expected =
   assert_equal (query input (List.map v versions)) expected

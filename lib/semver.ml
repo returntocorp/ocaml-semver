@@ -1,5 +1,4 @@
 open Printf
-open Scanf
 
 type t = int * int * int
 
@@ -30,7 +29,10 @@ let decrement_version p v = match p, v with
   | `Minor, (l1, l2, _) -> (l1, l2 - 1, 0)
   | `Patch, (l1, l2, l3) -> (l1, l2, l3 - 1)
 
-let of_string input = sscanf input "%d.%d.%d" (fun v1 v2 v3 -> (v1, v2, v3))
+let of_string input =
+  match Scanf.sscanf input "%d.%d.%d" (fun v1 v2 v3 -> (v1, v2, v3)) with
+  | v -> Some v
+  | exception _ -> None
 
 let to_string (v1, v2, v3) = sprintf "%d.%d.%d" v1 v2 v3
 
@@ -45,10 +47,10 @@ let query_version query versions =
   if res == [] then None else Some (last res)
 
 let parse_query input =
-  try sscanf input "%d.%d.%d" (fun v1 v2 v3 -> QueryPatch (v1, v2, v3))
+  try Scanf.sscanf input "%d.%d.%d" (fun v1 v2 v3 -> QueryPatch (v1, v2, v3))
   with End_of_file ->
-    try sscanf input "%d.%d" (fun v1 v2 -> QueryMinor (v1, v2))
-    with End_of_file -> sscanf input "%d" (fun v1 -> QueryMajor v1)
+    try Scanf.sscanf input "%d.%d" (fun v1 v2 -> QueryMinor (v1, v2))
+    with End_of_file -> Scanf.sscanf input "%d" (fun v1 -> QueryMajor v1)
 
 let print_query = function
   | QueryPatch (maj, min, patch) -> sprintf "%d.%d.%d" maj min patch

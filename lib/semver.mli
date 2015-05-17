@@ -24,7 +24,7 @@ val increment_version : version_part -> t -> t
 val decrement_version : version_part -> t -> t
 
 (** Parse a semantic version from a string *)
-val of_string : string -> t
+val of_string : string -> t option
 
 (** Convert a semantiv version to a string *)
 val to_string : t -> string
