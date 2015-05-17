@@ -1,8 +1,9 @@
 # OASIS_START
-# DO NOT EDIT (digest: 0fb5984e1e889c24213e0024dee2617a)
-# Ignore VCS directories, you can use the same kind of rule outside 
-# OASIS_START/STOP if you want to exclude directories that contains 
+# DO NOT EDIT (digest: 1627b92566cc0e427b330983ee400f14)
+# Ignore VCS directories, you can use the same kind of rule outside
+# OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
+true: annot, bin_annot
 <**/.svn>: -traverse
 <**/.svn>: not_hygienic
 ".bzr": -traverse
@@ -15,4 +16,10 @@
 "_darcs": not_hygienic
 # Library semver
 "lib/semver.cmxs": use_semver
+# Executable test_semver
+<lib_test/test_semver.{native,byte}>: pkg_oUnit
+<lib_test/test_semver.{native,byte}>: use_semver
+<lib_test/*.ml{,i,y}>: pkg_oUnit
+<lib_test/*.ml{,i,y}>: use_semver
+<lib_test/test_semver.{native,byte}>: custom
 # OASIS_STOP
