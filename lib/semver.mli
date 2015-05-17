@@ -3,10 +3,6 @@
 (** Semantic version consisting of major/minor/patch components *)
 type t = int * int * int
 
-type query = QueryPatch of int * int * int
-           | QueryMinor of int * int
-           | QueryMajor of int
-
 (** Part labels *)
 type version_part = [
   | `Major (** First part of version *)
@@ -29,9 +25,17 @@ val of_string : string -> t option
 (** Convert a semantic version to a string *)
 val to_string : t -> string
 
-val query_version : query -> t list -> t option
+module Query : sig
+  type t = [
+    | `Patch of int * int * int
+    | `Minor of int * int
+    | `Major of int
+  ]
 
-val parse_query : string -> query
-val print_query : query -> string
+  val of_string : string -> t option
+  val to_string : t -> string
+end
 
-val query : string -> t list -> t option
+val query : Query.t -> t list -> t option
+
+val query_str : string -> t list -> t option

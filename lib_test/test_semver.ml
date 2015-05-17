@@ -19,7 +19,7 @@ let gt v1 v2 =
   assert_equal (compare v2 v1) (-1)
 
 let q input versions expected =
-  assert_equal (query input (List.map v versions)) expected
+  assert_equal (query_str input (List.map v versions)) expected
 
 let suite = "Semver suite">::: [
   "3 parts">:: test_parse_print ((1, 1, 1)) "1.1.1";
