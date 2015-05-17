@@ -17,16 +17,16 @@ type version_part = [
 (** Compare two versions *)
 val compare : t -> t -> int
 
-(** increment [vpart] [v] increments [vpart] component in [v] *)
-val increment_version : version_part -> t -> t
+(** succ [vpart] [v] increments [vpart] component in [v] *)
+val succ  : version_part -> t -> t
 
-(** decrement [vpart] [v] decrements [vpart] component in [v] *)
-val decrement_version : version_part -> t -> t
+(** pred [vpart] [v] decrements [vpart] component in [v] *)
+val pred : version_part -> t -> t
 
 (** Parse a semantic version from a string *)
 val of_string : string -> t option
 
-(** Convert a semantiv version to a string *)
+(** Convert a semantic version to a string *)
 val to_string : t -> string
 
 val query_version : query -> t list -> t option

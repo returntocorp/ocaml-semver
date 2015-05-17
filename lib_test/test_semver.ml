@@ -26,13 +26,13 @@ let suite = "Semver suite">::: [
   "long parts">:: test_parse_print ((1243, 32415, 54535)) "1243.32415.54535";
 
   "inc">:: begin fun () -> 
-    eq (v"0.0.1") (increment_version `Patch (v"0.0.0"));
-    eq (v"0.1.0") (increment_version `Minor (v"0.0.0"));
-    eq (v"1.0.0") (increment_version `Major (v"0.0.0"));
+    eq (v"0.0.1") (succ `Patch (v"0.0.0"));
+    eq (v"0.1.0") (succ `Minor (v"0.0.0"));
+    eq (v"1.0.0") (succ `Major (v"0.0.0"));
 
-    eq (v"0.1.3") (increment_version `Patch (v"0.1.2"));
-    eq (v"1.1.0") (increment_version `Minor (v"1.0.2"));
-    eq (v"1.0.0") (increment_version `Major (v"0.1.2"));
+    eq (v"0.1.3") (succ `Patch (v"0.1.2"));
+    eq (v"1.1.0") (succ `Minor (v"1.0.2"));
+    eq (v"1.0.0") (succ `Major (v"0.1.2"));
   end;
 
   "cmp">:: begin fun () -> 

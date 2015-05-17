@@ -19,12 +19,12 @@ let compare (l1, l2, l3) (r1, r2, r3) =
   | 0, res, _ -> res
   | res, _, _ -> res
 
-let increment_version p v = match p, v with
+let succ p v = match p, v with
   | `Major, (l1, _, _) -> (l1 + 1, 0, 0)
   | `Minor, (l1, l2, _) -> (l1, l2 + 1, 0)
   | `Patch, (l1, l2, l3) -> (l1, l2, l3 + 1)
 
-let decrement_version p v = match p, v with
+let pred p v = match p, v with
   | `Major, (l1, _, _) -> (l1 - 1, 0, 0)
   | `Minor, (l1, l2, _) -> (l1, l2 - 1, 0)
   | `Patch, (l1, l2, l3) -> (l1, l2, l3 - 1)
