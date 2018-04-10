@@ -25,11 +25,11 @@ let pred p v = match p, v with
   | `Patch, (l1, l2, l3) -> (l1, l2, l3 - 1)
 
 let of_string input =
-  match Scanf.sscanf input "%d.%d.%d" (fun v1 v2 v3 -> (v1, v2, v3)) with
+  match Scanf.sscanf input "%u.%u.%u" (fun v1 v2 v3 -> (v1, v2, v3)) with
   | v -> Some v
   | exception _ -> None
 
-let to_string (v1, v2, v3) = sprintf "%d.%d.%d" v1 v2 v3
+let to_string (v1, v2, v3) = sprintf "%u.%u.%u" v1 v2 v3
 
 module Query = struct
   type t = [
@@ -39,18 +39,18 @@ module Query = struct
   ]
 
   let of_string input =
-    try Some (Scanf.sscanf input "%d.%d.%d" (fun v1 v2 v3 -> `Patch (v1, v2, v3)))
+    try Some (Scanf.sscanf input "%u.%u.%u" (fun v1 v2 v3 -> `Patch (v1, v2, v3)))
     with End_of_file ->
-      try Some (Scanf.sscanf input "%d.%d" (fun v1 v2 -> `Minor (v1, v2)))
+      try Some (Scanf.sscanf input "%u.%u" (fun v1 v2 -> `Minor (v1, v2)))
       with End_of_file ->
         try
-          Some (Scanf.sscanf input "%d" (fun v1 -> `Major v1))
+          Some (Scanf.sscanf input "%u" (fun v1 -> `Major v1))
         with Scanf.Scan_failure _ -> None
 
   let to_string = function
-    | `Patch (maj, min, patch) -> sprintf "%d.%d.%d" maj min patch
-    | `Minor (maj, min) -> sprintf "%d.%d" maj min
-    | `Major maj -> sprintf "%d" maj
+    | `Patch (maj, min, patch) -> sprintf "%u.%u.%u" maj min patch
+    | `Minor (maj, min) -> sprintf "%u.%u" maj min
+    | `Major maj -> sprintf "%u" maj
 end
 
 (* Should this just expect a sorted list instead of sorting it itself? *)
