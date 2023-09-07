@@ -59,12 +59,12 @@ end
 (* Should this just expect a sorted list instead of sorting it itself? *)
 let query query versions =
   let last ls = List.nth ls (List.length ls - 1) in
-  let compareQuery q v = match q, v with
-    | `Patch (maj, min, patch), v' -> (maj, min, patch) == v'
-    | `Minor (maj, min), (v1, v2, _) -> maj == v1 && min == v2
-    | `Major maj, (v1, _, _) -> maj == v1 in
-  let res = List.sort compare (List.filter (compareQuery query) versions) in
-  if res == []
+  let compare_query q v = match q, v with
+    | `Patch (maj, min, patch), v' -> (maj, min, patch) = v'
+    | `Minor (maj, min), (v1, v2, _) -> maj = v1 && min = v2
+    | `Major maj, (v1, _, _) -> maj = v1 in
+  let res = List.sort compare (List.filter (compare_query query) versions) in
+  if res = []
   then None
   else Some (last res)
 
