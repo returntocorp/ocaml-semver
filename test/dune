@@ -1,0 +1,7 @@
+(test
+ (name test_semver)
+ (libraries
+   alcotest
+   semver
+ )
+)

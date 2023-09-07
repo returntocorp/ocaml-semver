@@ -14,6 +14,9 @@ let compare (l1, l2, l3) (r1, r2, r3) =
   | 0, res, _ -> res
   | res, _, _ -> res
 
+let equal a b =
+  compare a b = 0
+
 let succ p v = match p, v with
   | `Major, (l1, _, _) -> (l1 + 1, 0, 0)
   | `Minor, (l1, l2, _) -> (l1, l2 + 1, 0)

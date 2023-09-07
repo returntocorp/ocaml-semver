@@ -13,6 +13,9 @@ type version_part = [
 (** Compare two versions *)
 val compare : t -> t -> int
 
+(** Return whether two versions are equal *)
+val equal : t -> t -> bool
+
 (** succ [vpart] [v] increments [vpart] component in [v] *)
 val succ  : version_part -> t -> t
 
