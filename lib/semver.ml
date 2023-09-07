@@ -8,14 +8,16 @@ type version_part = [
   | `Patch
 ]
 
-let compare (l1, l2, l3) (r1, r2, r3) =
+let semver_compare (l1, l2, l3) (r1, r2, r3) =
   match compare l1 r1, compare l2 r2, compare l3 r3 with
   | 0, 0, res -> res
   | 0, res, _ -> res
   | res, _, _ -> res
 
+let compare = semver_compare
+
 let equal a b =
-  compare a b = 0
+  semver_compare a b = 0
 
 let succ p v = match p, v with
   | `Major, (l1, _, _) -> (l1 + 1, 0, 0)
@@ -59,12 +61,14 @@ end
 (* Should this just expect a sorted list instead of sorting it itself? *)
 let query query versions =
   let last ls = List.nth ls (List.length ls - 1) in
-  let compareQuery q v = match q, v with
-    | `Patch (maj, min, patch), v' -> (maj, min, patch) == v'
-    | `Minor (maj, min), (v1, v2, _) -> maj == v1 && min == v2
-    | `Major maj, (v1, _, _) -> maj == v1 in
-  let res = List.sort compare (List.filter (compareQuery query) versions) in
-  if res == []
+  let compare_query q v = match q, v with
+    | `Patch (maj, min, patch), v' -> (maj, min, patch) = v'
+    | `Minor (maj, min), (v1, v2, _) -> maj = v1 && min = v2
+    | `Major maj, (v1, _, _) -> maj = v1 in
+  let res =
+    List.filter (compare_query query) versions
+    |> List.sort semver_compare in
+  if res = []
   then None
   else Some (last res)
 
