@@ -11,7 +11,7 @@
 
 (maintainers "Rudi Grinberg")
 
-(license LICENSE)
+(license BSD-3-Clause)
 
 (documentation https://github.com/returntocorp/ocaml-semver)
 
@@ -20,7 +20,7 @@
  (synopsis "Semantic Versioning (semver) library")
  (description "")
  (depends
-   alcotest  ; test only
+   (alcotest :with-test)
    dune
    ocaml
  )
