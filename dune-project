@@ -18,7 +18,7 @@
 (package
  (name semver)
  (synopsis "Semantic Versioning (semver) library")
- (description "Semver is a lightweight library for parsing version identifiers in 3 parts such as \"1.2.3\". \"Semver\" stands for Semantic Versioning and refers to the standard documented at https://semver.org/. This library is independent from the opam package named \"semver2\".")
+ (description "Semver is a lightweight library for parsing, comparing, and manipulating version identifiers in 3 parts such as \"1.2.3\". \"Semver\" stands for Semantic Versioning and refers to the standard documented at https://semver.org/. This library is independent from the opam package named \"semver2\".")
  (depends
    (alcotest :with-test)
    dune
