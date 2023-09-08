@@ -7,7 +7,7 @@
 (source
  (github rgrinberg/ocaml-semver))
 
-(authors "Tikhon Jelvis")
+(authors "Tikhon Jelvis" "Rudi Grinberg")
 
 (maintainers "Rudi Grinberg")
 
